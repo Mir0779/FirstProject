@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %} Supprimer une note {% endblock title %}
+
+{% block content %}
+<!--begin::App Main-->
+<main class="app-main">
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6"><h3 class="mb-0">Supprimer une note</h3></div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="{% url 'app:listeNotes' %}">Notes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Supprimer</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="app-content">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card mb-4">
+            <div class="card-header bg-danger text-white">
+              <h3 class="card-title">Confirmer la suppression</h3>
+            </div>
+            <div class="card-body">
+              <p>Êtes-vous sûr de vouloir supprimer la note suivante ?</p>
+              <ul>
+                <li><strong>Titre :</strong> {{ note.designiation }}</li>
+                <li><strong>Contenu :</strong> {{ note.contenu }}</li>
+              </ul>
+              <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                <a href="{% url 'app:listeNotes' %}" class="btn btn-secondary">Annuler</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
